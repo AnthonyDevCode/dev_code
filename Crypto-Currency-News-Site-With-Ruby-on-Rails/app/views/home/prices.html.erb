@@ -1,0 +1,112 @@
+<style type="text/css">
+    
+p {
+     
+     white-space: nowrap;
+     overflow: hidden;
+     text-overflow: ellipsis;
+}
+
+
+img{
+    max-height:300px;
+    max-width:300px;
+    height:auto;
+    width:auto;
+}
+
+
+</style>
+
+
+<% if @prices_single["DISPLAY"] %>
+<div class="container">
+    <div class="row">
+
+        <table class="table table-striped table-hover table-bordered">
+            
+              <thead>
+                <tr>
+                  <th scope="col">Name EUR</th>
+                  <th scope="col">Price EUR</th>
+                  <th scope="col">Daily High EUR</th>
+                  <th scope="col">Daily Low EUR</th>
+                  <th scope="col">Market Cap EUR</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @prices_single["DISPLAY"].each do |key, value|   %>     
+                <tr>            
+                  <td><%= key %></td>
+                  <td><%= value['EUR']['PRICE'] %></td>
+                  <td><%= value['EUR']['HIGHDAY'] %></td>
+                  <td><%= value['EUR']['LOWDAY'] %></td>
+                  <td><%= value['EUR']['MKTCAP'] %></td>          
+                </tr>
+                    <% end %>
+              </tbody>
+
+        </table>
+
+
+
+        <table class="table table-striped table-hover table-bordered">
+            
+              <thead>
+                <tr>
+                  <th scope="col">Name USD</th>
+                  <th scope="col">Price USD</th>
+                  <th scope="col">Daily High USD</th>
+                  <th scope="col">Daily Low USD</th>
+                  <th scope="col">Market Cap USD</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @prices_single["DISPLAY"].each do |key, value|   %>     
+                <tr>            
+                  <td><%= key %></td>
+                  <td><%= value['USD']['PRICE'] %></td>
+                  <td><%= value['USD']['HIGHDAY'] %></td>
+                  <td><%= value['USD']['LOWDAY'] %></td>
+                  <td><%= value['USD']['MKTCAP'] %></td>          
+                </tr>
+                    <% end %>
+              </tbody>
+            
+        </table>
+
+    </div>
+</div>
+<% else %>
+<h1>Please input a correct currency symbol...</h1>
+<% end %>
+
+<br/>
+<br/>
+
+
+
+
+<div class="container">
+    <div class="row">
+        
+
+        <% for x in @news_single["Data"] %>
+
+            <div class="col-sm">
+                <div class="card" style="width: 18rem;">
+                  <img src="<%=x['imageurl'] %>" class="card-img-top" alt="<%=x['source'] %>">
+                  <div class="card-body">
+                    <h5 class="card-title"><%= x["title"] %></h5>
+                    <p class="card-text"><%=x['body'] %></p>
+                    <a href="<%=x['url'] %>" class="btn btn-primary">Read More...</a>
+                  </div>
+                </div>
+            <br/>
+            </div>
+
+
+        <% end %>
+
+    </div>
+</div>
